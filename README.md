@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Docker Up
 
-1) `docker-compose build angularcrud-service`
+1) `docker-compose build angularbook-service`
 2) `docker-compose up;`
 
 ## Default Setup
