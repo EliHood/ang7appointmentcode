@@ -10,11 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {MatInputModule} from '@angular/material';
 import {  AngularFireDatabaseModule, AngularFireList } from '@angular/fire/database';
+import { ScheduleListComponent } from './schedule-list/schedule-list.component';
+import { FireStoreDatePipePipe } from './fire-store-date-pipe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ScheduleCreateComponent
+    ScheduleCreateComponent,
+    ScheduleListComponent,
+    FireStoreDatePipePipe
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

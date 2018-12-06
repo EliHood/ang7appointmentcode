@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ScheduleService} from '../schedule.service';
 import {NgForm } from '@angular/forms';
-
+import { AngularFirestore } from '@angular/fire/firestore';
 @Component({
   selector: 'app-schedule-create',
   templateUrl: './schedule-create.component.html',
@@ -9,15 +9,29 @@ import {NgForm } from '@angular/forms';
 })
 export class ScheduleCreateComponent implements OnInit {
 
-  constructor(private scheduleService: ScheduleService ) { }
+  constructor(private scheduleService: ScheduleService, private firestore: AngularFirestore ) { }
 
   ngOnInit() {
     this.resetForm();
   }
+  // // this doesn't work
+  // onSubmit(form: NgForm) {
+  //  this.scheduleService.insertSchedule(form.value)
+  // }
+  
 
-  onSubmit(scheduleForm: NgForm){
-    this.scheduleService.insertSchedule(scheduleForm.value);
+
+  onSubmit(form: NgForm) {
+    let data = Object.assign({}, form.value);
+    delete data.id;
+    if (form.value.id == null)
+      this.firestore.collection('schedules').add(data);
+    else
+      this.firestore.doc('schedules/' + form.value.id).update(data);
+    this.resetForm(form);
+
   }
+
 
   resetForm(form?: NgForm) {
     if (form != null)
@@ -27,5 +41,5 @@ export class ScheduleCreateComponent implements OnInit {
       appointment_date:''
     }
   }
-  
+
 }
