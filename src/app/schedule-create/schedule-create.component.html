@@ -6,12 +6,23 @@
             <mat-form-field class="example-full-width">
               <input matInput name="name" #name="ngModel" [(ngModel)]="scheduleService.formData.name" placeholder="Name" required>
             </mat-form-field >
+
   
             <mat-form-field class="example-full-width">
               <input matInput name="appointment_date" [matDatepicker]="picker" #appointment_date="ngModel" [(ngModel)]="scheduleService.formData.appointment_date" placeholder="Choose a date">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
+
+         
+            <div class="ngx-material-timepicker-example__form-group example-form">
+              <input aria-label="default value"
+                     placeholder="Set Hour"
+                     #appointment_hour="ngModel" [(ngModel)]="scheduleService.formData.appointment_hour"
+                     name="appointment_hour"
+                     [ngxTimepicker]="defaultValue" [value]="" readonly>
+              <ngx-material-timepicker #defaultValue></ngx-material-timepicker>
+          </div>
 
             <div class="form-group">
               <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-block btn-info">SUBMIT</button>
@@ -21,3 +32,4 @@
       </div>
     </div>
   </div>
+  

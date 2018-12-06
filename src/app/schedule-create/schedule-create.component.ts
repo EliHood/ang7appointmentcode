@@ -38,6 +38,7 @@ export class ScheduleCreateComponent implements OnInit {
       form.resetForm();
     this.scheduleService.formData = {
       name: '',
+      appointment_hour:'',
       appointment_date:''
     }
   }

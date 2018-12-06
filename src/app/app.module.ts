@@ -12,6 +12,7 @@ import {MatInputModule} from '@angular/material';
 import {  AngularFireDatabaseModule, AngularFireList } from '@angular/fire/database';
 import { ScheduleListComponent } from './schedule-list/schedule-list.component';
 import { FireStoreDatePipePipe } from './fire-store-date-pipe.pipe';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FireStoreDatePipePipe } from './fire-store-date-pipe.pipe';
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
+    NgxMaterialTimepickerModule.forRoot(),
     BrowserAnimationsModule ,
     MatDatepickerModule,
     MatNativeDateModule,
