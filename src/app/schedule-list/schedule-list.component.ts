@@ -16,11 +16,21 @@ export class ScheduleListComponent implements OnInit {
     this.service.getAppointments().subscribe(actionArray =>{
       this.list = actionArray.map(item =>{
         return{
+          eid: item.payload.doc.id,
           ...item.payload.doc.data()
         } as Schedule;
       })
     });
   }
+
+  deleteSchedule(event, schedule) {
+    const response = confirm('are you sure you want to delete?');
+    if (response ) {
+      this.service.deleteSchedule(schedule);
+    }
+    return;
+  }
+
 
   getSchedules(){
     return this.firestore.collection('schedules').snapshotChanges();

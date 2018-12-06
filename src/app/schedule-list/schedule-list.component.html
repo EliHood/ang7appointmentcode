@@ -5,8 +5,12 @@
         <div class="card">
           <div class="card-header">
               Name: {{appoint.name}}
+              <a href="#" class="secondary-content float-right">
+                <i (click)="deleteSchedule($event, schedule)" class="fa fa-trash"></i>
+              </a>
         
           </div>
+          
           <div class="card-body">
             <span><small>Appointment Set:</small></span><p>{{ appoint.appointment_date.toDate() | date: 'MM/dd/yyyy' }}</p>
             <span><small>Time:</small></span><p>{{ appoint.appointment_hour }}</p>
