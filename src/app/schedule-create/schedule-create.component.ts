@@ -23,8 +23,8 @@ export class ScheduleCreateComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     let data = Object.assign({}, form.value);
-    delete data.eid;
-    if (form.value.eid == null)
+ 
+    if (form.value.id == null)
       this.firestore.collection('schedules').add(data);
     else
       this.firestore.doc('schedules/' + form.value.id).update(data);
@@ -37,7 +37,7 @@ export class ScheduleCreateComponent implements OnInit {
     if (form != null)
       form.resetForm();
     this.scheduleService.formData = {
-      eid: null,
+      id: null,
       name: '',
       appointment_hour:'',
       appointment_date:''

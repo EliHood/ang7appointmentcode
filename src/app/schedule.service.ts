@@ -1,27 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Schedule } from './models/schedule.model';
+import { Observable } from 'rxjs';
+import { map } from "rxjs/operators";
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { AngularFirestore,AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore,AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
 export class ScheduleService {
   formData: Schedule;
+  schedules: Observable<Schedule[]>;
   scheduleList: AngularFirestoreDocument<Schedule>;
-  // scheduleDoc: AngularFirestoreDocument<Schedule>;
-  constructor(private db: AngularFireDatabase, private firestore: AngularFirestore) { }
+  scheduleCollection: AngularFirestoreCollection<Schedule>;
+
+  constructor(private db: AngularFireDatabase, private firestore: AngularFirestore) {
+    this.scheduleCollection = this.firestore.collection('schedules');
+
+    this.schedules = this.scheduleCollection.snapshotChanges().pipe(map(changes =>{
+      return changes.map(a =>{
+        const data = a.payload.doc.data() as Schedule;
+        data.id = a.payload.doc.id;
+        return data;
+      });
+    }));
+
+  }
 
   // ignore that code it doesnt work lol
 
 
   getAppointments(){
-    return this.firestore.collection('schedules').snapshotChanges();
+    return this.schedules;
   }
 
   deleteSchedule(schedule: Schedule) {
-    this.scheduleList = this.firestore.doc(`schedules/${schedule.eid}`);
+    this.scheduleList = this.firestore.doc(`schedules/${schedule.id}`);
     this.scheduleList.delete();
   }
+
 
 
   // insertSchedule(schedule: Schedule) {

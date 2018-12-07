@@ -13,13 +13,9 @@ export class ScheduleListComponent implements OnInit {
   constructor(private firestore: AngularFirestore, private service: ScheduleService ) { }
 
   ngOnInit() {
-    this.service.getAppointments().subscribe(actionArray =>{
-      this.list = actionArray.map(item =>{
-        return{
-          eid: item.payload.doc.id,
-          ...item.payload.doc.data()
-        } as Schedule;
-      })
+    this.service.getAppointments().subscribe(schedules => {
+      //console.log(list);
+      this.list = schedules;
     });
   }
 
@@ -30,6 +26,8 @@ export class ScheduleListComponent implements OnInit {
     }
     return;
   }
+
+
 
 
   getSchedules(){
