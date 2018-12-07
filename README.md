@@ -12,6 +12,3 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Default Setup
 
 1) `npm install`
-# angularr7appointment
-# angular7appointment
-# ang7appointment
