@@ -35,7 +35,16 @@ export class ScheduleService {
 
   deleteSchedule(schedule: Schedule) {
     this.scheduleList = this.firestore.doc(`schedules/${schedule.id}`);
-    this.scheduleList.delete();
+    const sched = this.scheduleList
+    
+    try{
+      this.scheduleList.delete();
+    }
+    catch(err){
+      console.log(err, "there seems to be an error" );
+    }
+   
+   
   }
 
 
