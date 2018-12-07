@@ -13,7 +13,7 @@ export class ScheduleService {
   scheduleList: AngularFirestoreDocument<Schedule>;
   scheduleCollection: AngularFirestoreCollection<Schedule>;
 
-  constructor(private db: AngularFireDatabase, private firestore: AngularFirestore) {
+  constructor(public db: AngularFireDatabase, public firestore: AngularFirestore) {
     this.scheduleCollection = this.firestore.collection('schedules');
 
     this.schedules = this.scheduleCollection.snapshotChanges().pipe(map(changes =>{
