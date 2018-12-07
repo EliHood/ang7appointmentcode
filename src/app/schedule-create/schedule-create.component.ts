@@ -9,7 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ScheduleCreateComponent implements OnInit {
 
-  constructor(public scheduleService: ScheduleService, public firestore: AngularFirestore ) { }
+  constructor(private scheduleService: ScheduleService, private firestore: AngularFirestore ) { }
 
   ngOnInit() {
     this.resetForm();
